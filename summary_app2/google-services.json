@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "13576230369",
+    "firebase_url": "https://summarizer-c2d85.firebaseio.com",
+    "project_id": "summarizer-c2d85",
+    "storage_bucket": "summarizer-c2d85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13576230369:android:b92977033f4ec6f597aea0",
+        "android_client_info": {
+          "package_name": "com.example.summary_app2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "13576230369-rq102k9lhl7da4anme9u2lfca08b3kdr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVFP90vIHwv4Nz7tnBdBY587C4z2L8MMQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "13576230369-rq102k9lhl7da4anme9u2lfca08b3kdr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
