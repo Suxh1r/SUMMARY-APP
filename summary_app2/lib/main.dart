@@ -66,7 +66,14 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView.builder(
           itemCount: Summary.samples.length,
           itemBuilder: (BuildContext context, int index) {
-            return buildSummaryCard(Summary.samples[index]);
+            return GestureDetector(onTap: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context){
+                  return Text("Full Summary:");
+                }
+              ));
+            },
+            child: buildSummaryCard(Summary.samples[index]),);
           },
         ),
       ),
