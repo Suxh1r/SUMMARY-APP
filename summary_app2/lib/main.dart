@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'summary.dart';
-
+import 'full_summary.dart';
+import 'package:flutter_mobile_vision/flutter_mobile_vision.dart';
 void main() {
   runApp(MyApp());
+}
+
+AddNewSummary () {
+  print("Go to Camera App");
 }
 
 class MyApp extends StatelessWidget {
@@ -66,49 +71,64 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView.builder(
           itemCount: Summary.samples.length,
           itemBuilder: (BuildContext context, int index) {
-            return GestureDetector(onTap: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context){
-                  return Text("Full Summary:");
-                }
-              ));
-            },
-            child: buildSummaryCard(Summary.samples[index]),);
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return fullSummary(Summary.samples[index]);
+                }));
+              },
+              child: buildSummaryCard(Summary.samples[index]),
+            );
           },
+        ),
+      ),
+       bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        child: Container(
+          height: 50.0,
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => setState(() {
+          AddNewSummary();
+        }),
+        tooltip: 'Increment Counter',
+        child: Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+
+  Widget buildSummaryCard(Summary summary) {
+    // 1
+    return Card(
+      // 2
+      elevation: 2.0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          // 3
+          children: <Widget>[
+            // 4
+            // Image(image: AssetImage(recipe.imageUrl)),
+            // 5
+            Text(
+              summary.label,
+              style: TextStyle(
+                fontSize: 30.0,
+                fontWeight: FontWeight.w700,
+                fontFamily: "Palatino",
+                color: Colors.blueAccent,
+              ),
+            ),
+            Text(summary.snippet),
+            SizedBox(
+              height: 14.0,
+            ),
+          ],
         ),
       ),
     );
   }
-
-Widget buildSummaryCard(Summary summary) {
-  // 1
-  return Card(
-    // 2
-      elevation: 2.0,
-      shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10.0)),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-        // 3
-          children: <Widget>[
-          // 4
-          // Image(image: AssetImage(recipe.imageUrl)),
-          // 5
-            Text(summary.label, style: TextStyle(
-              fontSize: 30.0,
-              fontWeight: FontWeight.w700,
-              fontFamily: "Palatino",
-              color: Colors.blueAccent,
-            ),),
-            Text(summary.snippet),
-            SizedBox(
-            height: 14.0,
-          ),
-        ],
-      ),
-  ),
-  );
-}
-
 }
