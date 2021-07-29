@@ -1,7 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'summary.dart';
 import 'full_summary.dart';
-import 'package:flutter_mobile_vision/flutter_mobile_vision.dart';
+// import 'package:flutter_mobile_vision/flutter_mobile_vision.dart';
 void main() {
   runApp(MyApp());
 }
