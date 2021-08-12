@@ -20,7 +20,7 @@ if (apiResp.statusCode == 200){
 
 }
 
-AddToList (text) {
+AddToList (text, Sum_Li) { 
 var SumOne = 
 Summary(
         "Test One",
@@ -28,8 +28,8 @@ Summary(
         text.substring(0, 11),
         text, 
         );
-  Summary.samples.add(SumOne);
-  print(Summary.samples);
+  Sum_Li.add(SumOne);
+  print(Sum_Li);
 
 }
 
@@ -81,6 +81,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final Sum_Li = Summary.samples;
   @override
   Widget build(BuildContext context) {
     // 1
@@ -93,15 +94,15 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SafeArea(
         // 4
         child: ListView.builder(
-          itemCount: Summary.samples.length,
+          itemCount: Sum_Li.length,
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return fullSummary(Summary.samples[index]);
+                  return fullSummary(Sum_Li[index]);
                 }));
               },
-              child: buildSummaryCard(Summary.samples[index]),
+              child: buildSummaryCard(Sum_Li[index]),
             );
           },
         ),
@@ -114,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-         Navigator.push(context, MaterialPageRoute(builder: (context) => cameraPage()));
+         Navigator.push(context, MaterialPageRoute(builder: (context) => cameraPage(Sum_Li:Sum_Li)));
         },
         tooltip: 'Increment Counter',
         child: Icon(Icons.add),
@@ -160,6 +161,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
 class cameraPage extends StatelessWidget {
   TextEditingController textFieldController = TextEditingController();
+
+  var Sum_Li;
+  cameraPage(
+      {Key key, this.Sum_Li}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // 1
@@ -182,7 +188,7 @@ class cameraPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          AddToList(textFieldController.text);
+          AddToList(textFieldController.text, Sum_Li);
         },
         tooltip: 'Increment Counter',
         child: Icon(Icons.add),
