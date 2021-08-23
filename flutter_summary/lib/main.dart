@@ -1,37 +1,13 @@
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'summary.dart';
 import 'full_summary.dart';
+import ;
 
 void main() {
   runApp(MyApp());
 }
 
- AddNewSummary (text) async {
- final url =  "http://192.168.29.145:5000/full_summarize/" + text; 
-//  print(url);
-http.Response apiResp = await http.get(Uri.parse(url));
-if (apiResp.statusCode == 200){
-  print("Request sent successfully");
-  print('${apiResp.body}');
-}else{
-  throw Exception('Request failed');
-}
 
-}
-
-AddToList (text, Sum_Li) { 
-var SumOne = 
-Summary(
-        "Test One",
-        DateTime.now(),
-        text.substring(0, 11),
-        text, 
-        );
-  Sum_Li.add(SumOne);
-  print(Sum_Li);
-
-}
 
 
 class MyApp extends StatelessWidget {
@@ -81,7 +57,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final Sum_Li = Summary.samples;
   @override
   Widget build(BuildContext context) {
     // 1
@@ -168,6 +143,7 @@ class cameraPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var sumOne = getSumOne(context);
     // 1
     return Scaffold(
       // 2
